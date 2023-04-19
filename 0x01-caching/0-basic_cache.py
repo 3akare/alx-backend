@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 '''BasicCache Class module'''
 
-from typing import Union
 from base_cache import BaseCaching
 
 
@@ -13,14 +12,14 @@ class BasicCache(BaseCaching):
         '''Inherits all the properties and methods of BaseCaching'''
         super().__init__()
 
-    def put(self, key: Union[None, int, float, str], item: Union[None, int, float, str]) -> None:  # noqa
+    def put(self, key, item):
         '''Stores a key-value pair in the cache_data dictionary'''
         if key is None or item is None:
             pass
         else:
             self.cache_data[key] = item
 
-    def get(self, key: Union[None, int, float, str]) -> Union[None, int, float, str]:  # noqa
+    def get(self, key):
         '''Retrieves a key-value pair from the cache_data dictionary'''
         if key is None:
             return None
