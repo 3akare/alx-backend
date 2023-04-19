@@ -8,7 +8,6 @@ class BasicCache(BaseCaching):
     """BasicCache: Inherits from BaseCaching and is a
     caching system
     """
-
     def put(self, key, item):
         """Stores a key-value pair in the cache_data
         dictionary
