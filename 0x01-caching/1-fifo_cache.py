@@ -3,7 +3,7 @@
 FIFOCache is a caching replacement policy that removes the
 the first item in a cache when it is full
 """
-from base_cache import BaseCaching
+from base_caching import BaseCaching
 
 
 class FIFOCache(BaseCaching):

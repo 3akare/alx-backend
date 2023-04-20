@@ -3,7 +3,7 @@
 LIFOCache is a caching replacement policy that removes the
 the last item in a cache when it is full
 """
-from base_cache import BaseCaching
+from base_caching import BaseCaching
 
 
 class LIFOCache(BaseCaching):
