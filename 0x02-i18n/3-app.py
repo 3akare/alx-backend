@@ -37,7 +37,7 @@ def index() -> str:
     Returns the 3-index.html from the templates
     directory
     '''
-    return render_template('/3-index.html')
+    return render_template('3-index.html')
 
 
 if __name__ == "__main__":
