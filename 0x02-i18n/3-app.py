@@ -38,8 +38,8 @@ def index() -> str:
     Returns the 3-index.html from the templates
     directory
     '''
-    h_t, h_h = 'Welcome to Holberton', 'Hello world'
-    return render_template('/3-index.html', home_title=h_t, home_header=h_h)
+    home_title, home_header = 'Welcome to Holberton', 'Hello world'
+    return render_template('/3-index.html', home_title=home_title, home_header=home_header)  # noqa
 
 
 if __name__ == "__main__":
