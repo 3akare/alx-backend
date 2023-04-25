@@ -24,7 +24,7 @@ babel = Babel(app)
 
 
 @babel.localeselector
-def get_locale() -> str:
+def get_locale():
     '''
     Selects a langauage translation to use for the request
     '''
@@ -33,7 +33,7 @@ def get_locale() -> str:
 
 
 @app.route('/')
-def index() -> str:
+def index():
     '''
     Returns the 3-index.html from the templates
     directory
