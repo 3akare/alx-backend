@@ -4,7 +4,7 @@ Config Class
 '''
 
 from flask import Flask, render_template, request
-from flask_babel import Babel, _
+from flask_babel import Babel
 
 app = Flask(__name__)
 
@@ -24,21 +24,20 @@ babel = Babel(app)
 
 
 @babel.localeselector
-def get_locale():
+def get_locale() -> str:
     '''
     Selects a langauage translation to use for the request
     '''
-    lang = request.accept_languages.best_match(app.config['LANGUAGES'])
-    return lang or app.config['BABEL_DEFAULT_LOCALE']
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 @app.route('/')
-def index():
+def index() -> str:
     '''
     Returns the 3-index.html from the templates
     directory
     '''
-    return render_template('/3-index.html')  # noqa
+    return render_template('/3-index.html')
 
 
 if __name__ == "__main__":
