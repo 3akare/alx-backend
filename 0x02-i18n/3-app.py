@@ -38,8 +38,7 @@ def index():
     Returns the 3-index.html from the templates
     directory
     '''
-    home_title, home_header = 'Welcome to Holberton', 'Hello world'
-    return render_template('/3-index.html', home_title=home_title, home_header=home_header)  # noqa
+    return render_template('/3-index.html')  # noqa
 
 
 if __name__ == "__main__":
