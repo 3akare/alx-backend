@@ -28,6 +28,9 @@ def get_locale() -> str:
     '''
     Selects a langauage translation to use for the request
     '''
+    test = 0
+    if (test):
+        return 'fr'
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
