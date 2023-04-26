@@ -12,7 +12,7 @@ app = Flask(__name__)
 users = {
     1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
     2: {"name": "Beyonce", "locale": "en", "timezone": "US/Central"},
-    3: {"name": "Spock", "locale": "kg", "timezone": "Vulcan"},
+    3: {"name": "Spock", "locale": "de", "timezone": "Vulcan"},
     4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
 }
 
@@ -34,12 +34,21 @@ babel = Babel(app)
 @babel.localeselector
 def get_locale() -> str:
     '''
-    Selects a locale translation to use for the request
+    Selects a langauage translation to use for the request
     '''
+    # Locale from URL parameter
     locale = request.args.get('locale')
-    if locale in ['en', 'fr', 'de']:
+    if locale in ['en', 'fr']:
         return locale
-    return request.accept_languages.best_match(app.config['LANGUAGES'])
+    # Locale from user settings
+    if g.user.get('locale'):
+        return g.user.get('locale')
+    # Locale from request header
+    req = request.accept_languages.best_match(app.config['LANGUAGES'])
+    if req:
+        return req
+    # Default locale
+    return app.config['BABEL_DEFAULT_LOCALE']
 
 
 def get_user() -> Union[dict, None]:
