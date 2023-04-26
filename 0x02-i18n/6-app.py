@@ -22,7 +22,7 @@ class Config:
     Config Class: Used along side with the 'app.config.from.object()
     function provided by babel to config it'
     '''
-    LANGUAGES: list = ['en', 'fr']
+    LANGUAGES: list = ['en', 'fr', 'de']
     BABEL_DEFAULT_LOCALE: str = 'en'
     BABEL_DEFAULT_TIMEZONE: str = 'UTC'
 
@@ -37,16 +37,19 @@ def get_locale() -> str:
     Selects a langauage translation to use for the request
     '''
     # Locale from URL parameter
-    locale = request.args.get('locale')
+    locale: str = request.args.get('locale')
     if locale in ['en', 'fr', 'de']:
         return locale
+
     # Locale from user settings
-    if g.user.get('locale'):
+    if g.user.get('locale', None):
         return g.user.get('locale')
+
     # Locale from request header
-    req = request.accept_languages.best_match(app.config['LANGUAGES'])
+    req: str = request.accept_languages.best_match(app.config['LANGUAGES'])
     if req:
         return req
+
     # Default locale
     return app.config['BABEL_DEFAULT_LOCALE']
 
@@ -78,4 +81,4 @@ def index() -> str:
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
