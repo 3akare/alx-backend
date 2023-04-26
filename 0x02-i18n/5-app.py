@@ -5,9 +5,15 @@ Config Class
 
 from flask import Flask, render_template, request, g
 from flask_babel import Babel
-from utils import users
 
 app = Flask(__name__)
+
+users = {
+    1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
+    2: {"name": "Beyonce", "locale": "en", "timezone": "US/Central"},
+    3: {"name": "Spock", "locale": "kg", "timezone": "Vulcan"},
+    4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
+}
 
 
 class Config:
@@ -35,21 +41,21 @@ def get_locale() -> str:
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
-def get_user():
+def get_user() -> dict:
     '''
     Gets user if from users dictionary (utils.py)
     '''
-    user_id = int(request.args.get('login_as')) if request.args.get('login_as') else None  # noqa
+    user_id: int = int(request.args.get('login_as')) if request.args.get('login_as') else None  # noqa
     return users.get(user_id) if user_id in users else None
 
 
 @app.before_request
-def before_request():
+def before_request() -> None:
     '''
     gets user id, and stores it in g.user
     it will be the first function to run
     '''
-    g.user = get_user() if get_user() else None
+    g.user: dict = get_user() if get_user() else None
 
 
 @app.route('/')
@@ -60,7 +66,7 @@ def index() -> str:
     '''
     username = None
     if (g.user):
-        username = g.user.get('name')
+        username: str = g.user.get('name')
     return render_template('5-index.html', username=username)
 
 
