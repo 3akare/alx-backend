@@ -38,7 +38,7 @@ def get_locale() -> str:
     '''
     # Locale from URL parameter
     locale = request.args.get('locale')
-    if locale in ['en', 'fr']:
+    if locale in ['en', 'fr', 'de']:
         return locale
     # Locale from user settings
     if g.user.get('locale'):
