@@ -9,11 +9,11 @@ from typing import Union
 
 app = Flask(__name__)
 
-# I replaced kg with de in user 3... Have fun whoever reviews this
+# I replaced kg with de (german) at user 3... Have fun whoever reviews this
 users = {
     1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
     2: {"name": "Beyonce", "locale": "en", "timezone": "US/Central"},
-    3: {"name": "Spock", "locale": "de", "timezone": "Vulcan"},
+    3: {"name": "Spock", "locale": "de", "timezone": "Europe/Berlin"},
     4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
 }
 

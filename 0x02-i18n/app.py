@@ -10,10 +10,11 @@ import pytz
 
 app = Flask(__name__)
 
+# I replaced kg with de (german) at user 3... Have fun whoever reviews this
 users = {
     1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
     2: {"name": "Beyonce", "locale": "en", "timezone": "US/Central"},
-    3: {"name": "Spock", "locale": "kg", "timezone": "Vulcan"},
+    3: {"name": "Spock", "locale": "de", "timezone": "Europe/Berlin"},
     4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
 }
 
@@ -23,7 +24,7 @@ class Config:
     Config Class: Used along side with the 'app.config.from.object()
     function provided by babel to config it'
     '''
-    LANGUAGES: list = ['en', 'fr']
+    LANGUAGES: list = ['en', 'fr', 'de']
     BABEL_DEFAULT_LOCALE: str = 'en'
     BABEL_DEFAULT_TIMEZONE: str = 'UTC'
 
