@@ -12,7 +12,7 @@ app = Flask(__name__)
 users = {
     1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
     2: {"name": "Beyonce", "locale": "en", "timezone": "US/Central"},
-    3: {"name": "Spock", "locale": "de", "timezone": "Vulcan"},
+    3: {"name": "Spock", "locale": "kg", "timezone": "Vulcan"},
     4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
 }
 
@@ -22,7 +22,7 @@ class Config:
     Config Class: Used along side with the 'app.config.from.object()
     function provided by babel to config it'
     '''
-    LANGUAGES: list = ['en', 'fr', 'de']
+    LANGUAGES: list = ['en', 'fr']
     BABEL_DEFAULT_LOCALE: str = 'en'
     BABEL_DEFAULT_TIMEZONE: str = 'UTC'
 
