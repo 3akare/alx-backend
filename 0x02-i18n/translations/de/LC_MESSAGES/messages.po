@@ -36,3 +36,6 @@ msgstr "Du bist eingeloggt als %(username)s"
 msgid "not_logged_in"
 msgstr "Du bist nicht eingeloggt"
 
+#: templates/5-index.html:8 templates/6-index.html:8
+msgid "not_logged_in"
+msgstr "Du bist nicht eingeloggt"

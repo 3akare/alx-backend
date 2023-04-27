@@ -4,16 +4,16 @@ Config Class
 '''
 
 from flask import Flask, render_template, request, g
-from flask_babel import Babel
+from flask_babel import Babel, format_datetime
 from typing import Union
+import pytz
 
 app = Flask(__name__)
 
-# I replaced kg with de in user 3... Have fun whoever reviews this
 users = {
     1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
     2: {"name": "Beyonce", "locale": "en", "timezone": "US/Central"},
-    3: {"name": "Spock", "locale": "de", "timezone": "Vulcan"},
+    3: {"name": "Spock", "locale": "kg", "timezone": "Vulcan"},
     4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
 }
 
@@ -23,7 +23,7 @@ class Config:
     Config Class: Used along side with the 'app.config.from.object()
     function provided by babel to config it'
     '''
-    LANGUAGES: list = ['en', 'fr', 'de']
+    LANGUAGES: list = ['en', 'fr']
     BABEL_DEFAULT_LOCALE: str = 'en'
     BABEL_DEFAULT_TIMEZONE: str = 'UTC'
 
@@ -94,10 +94,11 @@ def before_request() -> None:
 @app.route('/')
 def index() -> str:
     '''
-    Returns the 7-index.html from the templates
+    Returns the index.html from the templates
     directory
     '''
-    return render_template('7-index.html')
+    g.time = format_datetime()
+    return render_template('index.html')
 
 
 if __name__ == "__main__":
