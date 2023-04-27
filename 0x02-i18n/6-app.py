@@ -37,17 +37,17 @@ def get_locale() -> str:
     Selects a langauage translation to use for the request
     '''
     # Locale from URL parameter
-    locale: str = request.args.get('locale')
-    if locale in ['en', 'fr', 'de']:
+    locale: str = request.args.get('locale', '')
+    if locale in app.config['LANGUAGES']:
         return locale
 
     # Locale from user settings
-    if g.user.get('locale', None):
-        return g.user.get('locale')
+    if g.user and g.user['locale'] in app.config['LANGUAGES']:
+        return g.user['locale']
 
     # Locale from request header
-    req: str = request.accept_languages.best_match(app.config['LANGUAGES'])
-    if req:
+    req: str = request.headers.get('locale', '')
+    if req in app.config['LANGUAGES']:
         return req
 
     # Default locale
@@ -74,10 +74,10 @@ def before_request() -> None:
 @app.route('/')
 def index() -> str:
     '''
-    Returns the 5-index.html from the templates
+    Returns the 6-index.html from the templates
     directory
     '''
-    return render_template('5-index.html')
+    return render_template('6-index.html')
 
 
 if __name__ == "__main__":
